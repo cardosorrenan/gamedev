@@ -12,6 +12,14 @@ const routes = [
     },
     component: () => import('../views/Home.vue')
   },
+  {
+    path: '/turma',
+    name: 'turma',
+    meta: {
+      title: 'Turma'
+    },
+    component: () => import('../views/Turma.vue')
+  }
 ]
 
 const router = new VueRouter({

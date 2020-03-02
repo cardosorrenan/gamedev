@@ -4,21 +4,36 @@
       <div class="presentation">
         <div class="shadow">
           <h3 class="title">Minicurso | Introdução à Programação</h3>
+          <h3 class="title2">{{ this.turma }}</h3>
         </div>
-      </div>      
-      <a class="main-btn" @click="turma('Turma 2019.2')">Turma 2019.2</a>
-      <a class="main-btn" @click="turma('Turma 2020.1')">Turma 2020.1</a>
+      </div>
+      <div class="class1">
+        <div class="class2">
+          <a class="btn-return" @click="home()">← Voltar</a>
+        </div>
+        <div class="class3">
+          <a class="main-btn">Material</a>
+          <a class="main-btn">Cronograma</a>
+          <a class="main-btn">Participantes</a>
+        </div>
+      </div>   
+      
     </div>  
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Turma',
+  data: () => ({
+    turma: ""
+  }),
+  mounted () {
+    this.turma = this.$route.params.turma
+  },
   methods: {
-    turma (turma) {
-      console.log(turma)
-      this.$router.push({ name: 'turma', params: { turma } })
+    home () {
+      this.$router.push({ name: 'home' })
     }
   }
 }
@@ -54,6 +69,16 @@ export default {
   text-shadow: 1px 1px #283040;
   margin: 0px 10px 0px 10px;
 }
+
+.title2 {
+  position: relative;
+  top: 45%;
+  font-size: 0.75em;
+  color: black;
+  opacity: 0.5;
+  margin: 0px 10px 0px 10px;
+}
+
 .presentation {
   margin-top: 0px;
   height: 280px;
@@ -77,14 +102,61 @@ export default {
   background-color: #283040;
   color: #ffffff;
   text-align: center;
-  margin-top: 35px;
   border-radius: 50em;
   padding: .75rem 1.25rem;
-  width: 150px;
+  width: 250px;
   font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 2px 2px black;
   cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.btn-return{
+  color: #0774AF;
+  text-shadow: none; 
+  background-color: #283040;
+  color: #ffffff;
+  border-radius: 50em;
+  font-size: 10pt;
+  padding: 1.4em 1.6em;
+  border-radius: 50em;
+  text-align: center;
+  font-family: 'Montserrat Alternates', sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 2px 2px black;
+}
+
+.class1 {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+@media (max-width: 550px) {
+  .class1 {
+    flex-direction: column;
+  }
+  .btn-return {
+    margin-bottom: 40px;
+  }
+  .main-btn {
+    width: 60%;
+  }
+}
+
+.class2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.class3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 </style>

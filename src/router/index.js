@@ -28,6 +28,14 @@ const routes = [
     },
     component: () => import('../views/Participantes.vue')
   },
+  {
+    path: '/material',
+    name: 'material',
+    meta: {
+      title: 'Material'
+    },
+    component: () => import('../views/Material.vue')
+  },
 ]
 
 const router = new VueRouter({

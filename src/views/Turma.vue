@@ -1,64 +1,47 @@
 <template>
   <div>
-    <title-card title="GAMEDEV | Uma Introdução à Programação" :lead="title" />
+   
+    <title-card title="GAMEDEV | Uma Introdução à Programação" :lead="'Turma ' + turma[0].periodo" />
     <div class="box">
       <div class="box-return">
-        <button-return />
+        <button class="return-btn" @click='goTo("home")'>Voltar</button>
       </div>
-      <div class="box-menu">
-        <button-navigate title="Material" />
-        <button-navigate title="Cronograma" />
-        <button-navigate title="Participantes" />
+      <div class="box-content">
+        <button class="menu-btn" @click='goTo("material")'>Material</button>
+        <button class="menu-btn" @click='goTo("cronograma")'>Cronograma</button>
+        <button class="menu-btn" @click='goTo("participantes")'>Participantes</button>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 
 import TitleCard from '../components/TitleCard'
-import Navigate from '../components/ButtonNavigate'
-import Return from '../components/ButtonReturn'
 
 export default {
   name: 'Turma',
   components: {
     'title-card': TitleCard,
-    'button-navigate': Navigate,
-    'button-return': Return,
   },
-  data () {
-    return {
-      title: ""
+  methods: {        
+    goTo(page) {
+      this.$router.push({ name: page })   
+    }  
+  },
+  computed: {
+    turma () {
+      return this.$store.state.turma
     }
-  },
-  mounted () {
-    this.title = this.$route.params.title
   }
 }
 </script>
 
 <style scoped>
-  .box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  .box-return {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .box-menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-top: 15px;
-  }
   @media (max-width: 650px) {
-    .box-menu {
+    .box-content {
       flex-direction: column;
+      height: 30vh;
+      justify-content: space-evenly;
     }
   }
 </style>

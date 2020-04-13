@@ -2,30 +2,30 @@
   <div>
     <title-card title='GAMEDEV | Uma Introdução à Programação'/>
     <div class="main-buttons">
-      <button-navigate title='Turma 2019.2' to="turma"/>
-      <button-navigate title='Turma 2020.1' to="turma"/>
+      <button class="menu-btn" @click='changeTurma("2019.2")'>Turma 2019.2</button>
+      <button class="menu-btn" @click='changeTurma("2020.1")'>Turma 2020.1</button>
     </div>
   </div>
 </template>
-
 <script>
+
 import TitleCard from '../components/TitleCard'
-import Button from '../components/ButtonNavigate'
 
 export default {
   name: 'Home',
   components: {
     'title-card': TitleCard,
-    'button-navigate': Button
+  },
+  data () {
+    return {
+      turma: ""
+    }
+  },
+  methods: {
+    changeTurma(str) {
+      this.$store.dispatch('addTurma', str); 
+      this.$router.push({ name: 'turma' })   
+    }
   }
 }
 </script>
-
-<style scoped>
-  .main-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-</style>

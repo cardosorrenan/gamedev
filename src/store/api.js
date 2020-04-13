@@ -1,0 +1,1 @@
+export const url_api = 'localhost:1337'

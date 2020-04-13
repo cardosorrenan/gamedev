@@ -6,7 +6,140 @@
 * {
   font-family: 'Source Code Pro', monospace;
 }
-
 a {
+  color: #FFF;
+}
+html, body {
+  background-color:  #283040 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.2s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
+.container {
+  font-family: 'Source Code Pro', monospace;
+  display: block;
+  align-self: center;
+  margin: 20px !important;
+  width: 90vw !important;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 70px);;
+  background-color: #0774AF;
+  padding: 0 !important;
+  padding-bottom: 30px !important;
+}
+.presentation {
+  height: 280px;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  overflow: hidden;
+  background-image: url('../img/img-mucambo.jpg');
+  background-position: 10% 40%;
+  background-repeat: no-repeat;
+  background-size: 170%;
+}
+.shadow {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: rgb(7,116,175);
+  background: linear-gradient(0deg, rgba(7,116,175,1) 13%, rgba(4,3,3,0));
+}
+.title {
+  position: relative;
+  top: 45%;
+  font-size: 12pt;
+  color: #FFF;
+  text-shadow: 1px 1px #283040;
+  margin: 0px 10px 0px 10px;
+}
+.lead {
+  position: relative;
+  top: 45%;
+  font-size: 0.75em;
+  color: #000;
+  opacity: 0.7;
+  margin: 0px 10px 0px 10px;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.box-return {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 40vh;
+}
+.box-content {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+.menu-btn {
+  background-color: #283040;
+  border: 0px;
+  height: 40px;
+  color: #FFF !important;
   font-family: 'Montserrat Alternates', sans-serif;
+  text-align: center;
+  border-radius: 50em;
+  padding: .75rem 1.25rem;
+  width: 150px !important;
+  font-weight: 300;
+  text-decoration: none !important;
+  box-shadow: 2px 2px #000;
+  cursor: pointer;
+}
+.return-btn {
+  background-color: #283040;
+  border: 0px;
+  height: 40px;
+  color: #FFF !important;
+  font-family: 'Montserrat Alternates', sans-serif;
+  text-align: center;
+  border-radius: 50em;
+  padding: .75rem 1.25rem;
+  width: 75px;
+  font-size: 9pt;
+  font-weight: 300;
+  text-decoration: none !important;
+  box-shadow: 2px 2px #000;
+  cursor: pointer;
+}
+.table {
+  width: 60%;
+  font-size: 9pt;
+  text-align: center;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background-color: #e2e2e2;
+  color: #283040;
+}
+.table-title {
+  color: #FFF;
+  font-weight: 700;
+  font-size: 14pt;
 }

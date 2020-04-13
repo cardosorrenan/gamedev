@@ -19,7 +19,15 @@ const routes = [
       title: 'Turma'
     },
     component: () => import('../views/Turma.vue')
-  }
+  },
+  {
+    path: '/participantes',
+    name: 'participantes',
+    meta: {
+      title: 'Participantes'
+    },
+    component: () => import('../views/Participantes.vue')
+  },
 ]
 
 const router = new VueRouter({

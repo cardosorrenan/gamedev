@@ -1,6 +1,5 @@
 <template>
   <div>
-   
     <title-card title="GAMEDEV | Uma Introdução à Programação" :lead="'Turma ' + turma[0].periodo" />
     <div class="box">
       <div class="box-return">
@@ -44,7 +43,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
   .box {
     display: flex;

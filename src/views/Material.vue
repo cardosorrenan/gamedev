@@ -103,7 +103,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
   .box {
     display: flex;
@@ -181,7 +180,7 @@ export default {
     box-shadow: 2px 2px #000;
     cursor: pointer;
   }
-   .return-btn {
+  .return-btn {
     background-color: #283040;
     border: 0px;
     height: 40px;

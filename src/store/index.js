@@ -4,7 +4,6 @@ import axios from 'axios'
 import { url_api } from './api'
 import createPersistedState from 'vuex-persistedstate'
 
-
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({    

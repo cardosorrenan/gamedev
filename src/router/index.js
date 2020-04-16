@@ -36,6 +36,14 @@ const routes = [
     },
     component: () => import('../views/Material.vue')
   },
+  {
+    path: '/cronograma',
+    name: 'cronograma',
+    meta: {
+      title: 'Cronograma'
+    },
+    component: () => import('../views/Cronograma.vue')
+  },
 ]
 
 const router = new VueRouter({

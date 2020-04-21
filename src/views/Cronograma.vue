@@ -2,10 +2,10 @@
   <div>
     <div class="box mt-5">
       <div class="box-return">
-        <button class="return-btn" @click='goTo("turma")'>
+        <router-link class="return-btn" to="/turma">
           <i class="return-icon fas fa-arrow-left" />  
           Voltar
-        </button>
+        </router-link>
       </div>
       <div class="box-content mt-5">
         <p class="table-title">Cronograma</p>
@@ -17,7 +17,7 @@
 </template>
 <script>
 
-import moment from 'moment'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Cronograma',
@@ -30,23 +30,10 @@ export default {
       ],
     }
   },
-  methods: {        
-    goTo(page) {
-      this.$router.push({ name: page })   
-    }  
-  },
   computed: {
-    conteudos () {
-      const conteudos = this.$store.state.turma[0].conteudos
-      return conteudos.map(c => 
-        Object.assign(
-          { 
-            'Aula': c.aula,
-            'Data/Horário': moment(c.horario).format('DD/MM - h:mm a'),
-            'Conteúdo': c.conteudo
-          })
-      )
-    },
+    ...mapGetters([
+      'conteudos',
+    ])
   }
 }
 </script>

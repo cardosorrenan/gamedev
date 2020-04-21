@@ -44,6 +44,13 @@ const routes = [
     },
     component: () => import('../views/Cronograma.vue')
   },
+  { path: "*", 
+    name: '404 Not Found',
+    meta: {
+      title: '404 Not Found'
+    },
+    component: () => import('../views/NotFound.vue')
+  }
 ]
 
 const router = new VueRouter({

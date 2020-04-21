@@ -1,1 +1,1 @@
-export const url_api = 'localhost:1337'
+export const url_api = 'gamedev-ufc.herokuapp.com'

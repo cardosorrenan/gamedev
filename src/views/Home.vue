@@ -2,8 +2,12 @@
   <div>
     <title-card title='GAMEDEV | Uma Introdução à Programação'/>
     <div class="main-buttons">
-      <button class="menu-btn" @click='changeTurma("2019.2")'>Turma 2019.2</button>
-      <button class="menu-btn" @click='changeTurma("2020.1")'>Turma 2020.1</button>
+      <router-link class="menu-btn" :to="{ name: 'turma', params: { turma: '2019.2' } }">
+        Turma 2019.2
+      </router-link>
+      <router-link class="menu-btn" :to="{ name: 'turma', params: { turma: '2020.1' } }">
+        Turma 2020.1
+      </router-link>
     </div>
   </div>
 </template>
@@ -16,17 +20,7 @@ export default {
   components: {
     'title-card': TitleCard,
   },
-  data () {
-    return {
-      turma: ""
-    }
-  },
-  methods: {
-    changeTurma(str) {
-      this.$store.dispatch('addTurma', str); 
-      this.$router.push({ name: 'turma' })   
-    }
-  }
+  
 }
 </script>
 <style scoped>

@@ -2,15 +2,15 @@
   <div>
     <div class="box mt-5">
       <div class="box-return">
-        <button class="return-btn" @click='goTo("turma")'>
+        <router-link class="return-btn" to="/turma">
           <i class="return-icon fas fa-arrow-left" />  
           Voltar
-        </button>
+        </router-link>
       </div>
       <div class="box-content mt-5">
         <p class="table-title">Materiais</p>
         <div v-for="item in materiais" :key="item.descricao">
-          <a class="list-btn" :href="url_api + item.arquivo">
+          <a class="list-btn" :href="item.arquivo">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
@@ -18,7 +18,7 @@
         <hr>
         <p class="table-title">Slides de Aula</p>
         <div v-for="item in slides" :key="item.descricao">
-          <a class="list-btn" :href="url_api + item.arquivo">
+          <a class="list-btn" :href="item.arquivo">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
@@ -26,15 +26,15 @@
         <hr>
         <p class="table-title">Projetos Desenvolvidos em Aula</p>
         <div v-for="item in projetos" :key="item.descricao">
-          <a class="list-btn" :href="url_api + item.arquivo">
+          <a class="list-btn" :href="item.arquivo">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
         </div>
         <hr>
         <p class="table-title">Projetos Vencedores</p>
-        <div v-for="item in projetosVencedores" :key="item.descricao">
-          <a class="list-btn" :href="url_api + item.arquivo">
+        <div v-for="item in projetos_alunos" :key="item.descricao">
+          <a class="list-btn" :href="item.arquivo">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
@@ -45,7 +45,7 @@
 </template>
 <script>
 
-import { url_api } from '../store/api'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Material',
@@ -54,52 +54,13 @@ export default {
       url_api
     }
   },
-  methods: {        
-    goTo(page) {
-      this.$router.push({ name: page })   
-    }  
-  },
   computed: {
-    materiais () {
-      const materiais = this.$store.state.turma[0].materiais
-      return materiais.map(m => 
-        Object.assign(
-          { 
-            'descricao': m.descricao,
-            'arquivo': !!m.arquivo.length ? m.arquivo[0].url : false 
-          })
-      )
-    },
-    slides () {
-      const slides = this.$store.state.turma[0].slides
-      return slides.map(s => 
-        Object.assign(
-          { 
-            'descricao': s.descricao,
-            'arquivo': !!s.arquivo.length ? s.arquivo[0].url : false 
-          })
-      )
-    },
-    projetos () {
-      const projetos = this.$store.state.turma[0].projetos
-      return projetos.map(p => 
-        Object.assign(
-          { 
-            'descricao': p.descricao,
-            'arquivo': !!p.arquivo.length ? p.arquivo[0].url : false 
-          })
-      )
-    },
-    projetosVencedores () {
-      const projetos = this.$store.state.turma[0].projetos_alunos
-      return projetos.map(p => 
-        Object.assign(
-          { 
-            'descricao': p.descricao,
-            'arquivo': !!p.arquivo.length ? p.arquivo[0].url : false 
-          })
-      )
-    },
+    ...mapGetters([
+      'materiais',
+      'slides',
+      'projetos',
+      'projetos_alunos'
+    ])
   }
 }
 </script>

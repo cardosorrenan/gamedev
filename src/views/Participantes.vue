@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="box mt-5">
-      <button class="return-btn" @click='goTo("turma")'>
+      <router-link class="return-btn" to="/turma">
         <i class="return-icon fas fa-arrow-left" />  
         Voltar
-      </button>
+      </router-link>
       <div class="box-content mt-5">
         <p class="table-title">Colaboradores</p>
         <b-table class="table" striped hover :fields="colaboradoresFields" :items="colaboradores"/>
         <hr>
-        <p class="table-title">{{turma}}</p>
-        <b-table class="table" striped hover :fields="alunosFields" :items="detalhes">
+        <p class="table-title">Turma {{periodo}}</p>
+        <b-table class="table" striped hover :fields="alunosFields" :items="alunos">
           <template v-slot:cell(certificado)="data">
             <div v-if='data.item.certificado' >
-              <a :href="url_api + data.item.certificado" target="_blank">
+              <a :href="data.item.certificado" target="_blank">
                 <i class="icon fas fa-download" />
               </a>
             </div>
@@ -25,7 +25,7 @@
 </template>
 <script>
 
-import { url_api } from '../store/api'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Participantes',
@@ -43,36 +43,12 @@ export default {
       ],
     }
   },
-  methods: {        
-    goTo(page) {
-      this.$router.push({ name: page })   
-    }  
-  },
   computed: {
-    colaboradores () {
-      const colaboradores = this.$store.state.turma[0].colaboradores
-      return colaboradores.map(c => 
-        Object.assign(
-          { 
-            'Nome': c.Nome,
-            'Email': c.Email
-          })
-      )
-    },
-    turma () {
-      return `Turma ${this.$store.state.turma[0].periodo}`
-    },
-    detalhes () {
-      const alunos = this.$store.state.turma[0].alunos
-      return alunos.map(a => 
-        Object.assign(
-          { 
-            'nome': a.nome,
-            'faltas': a.faltas,
-            'certificado': !!a.certificado.length ? a.certificado[0].url : false 
-          })
-      )
-    }
+    ...mapGetters([
+      'periodo',
+      'colaboradores',
+      'alunos'
+    ]),
   }
 }
 </script>

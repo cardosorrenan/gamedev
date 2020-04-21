@@ -1,23 +1,38 @@
 <template>
-  <div>
-    <title-card title="GAMEDEV | Uma Introdução à Programação" :lead="'Turma ' + turma[0].periodo" />
+  <div v-if='loading'>
+    <div class="loading">
+      <i class="fas fa-circle-notch fa-spin fa-2x"></i>
+      <p class="text-loading">Conectando com o servidor...</p>
+    </div>
+    <!--div class="loading" v-else>
+      <div class="img-error" />
+      <p class="text-loading">Servidor não está respondendo</p>
+      <p class="text-loading">Desculpe o transtorno</p>
+      <router-link class="return-btn" to="/">
+        <i class="return-icon fas fa-arrow-left" />  
+        Voltar
+      </router-link>
+    </div-->
+  </div>
+  <div v-else>
+    <title-card title="GAMEDEV | Uma Introdução à Programação" :lead="'Turma ' + periodo" />
     <div class="box">
       <div class="box-return">
-        <button class="return-btn" @click='goTo("home")'>
+        <router-link class="return-btn" to="/">
           <i class="return-icon fas fa-arrow-left" />  
           Voltar
-        </button>
+        </router-link>
       </div>
       <div class="box-content">
-        <button class="menu-btn" @click='goTo("material")'>
+        <router-link class="menu-btn" to="/material">
           Material
-        </button>
-        <button class="menu-btn" @click='goTo("cronograma")'>
+        </router-link>
+        <router-link class="menu-btn" to="/cronograma">
           Cronograma
-        </button>
-        <button class="menu-btn" @click='goTo("participantes")'>
+        </router-link>
+        <router-link class="menu-btn" to="/participantes">
           Participantes
-        </button>
+        </router-link>
       </div>
     </div>
   </div>
@@ -25,25 +40,55 @@
 <script>
 
 import TitleCard from '../components/TitleCard'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Turma',
   components: {
     'title-card': TitleCard,
   },
-  methods: {        
-    goTo(page) {
-      this.$router.push({ name: page })   
-    }  
+  data () {
+    return {
+      loading: true,
+    }
+  },
+  created() {
+    const turma = this.$route.params.turma
+    if (!!turma) {
+      this.$store.dispatch('addTurma', turma)
+    } else {
+      this.loading = false
+    }
   },
   computed: {
-    turma () {
-      return this.$store.state.turma
-    }
+    ...mapGetters([
+      'periodo',
+    ]),
+  },
+  watch:{
+    '$store.state.turma': {
+      handler: function(newValue) {
+        if (!!newValue) {
+          this.loading = false
+        }
+      },
+    },
   }
 }
 </script>
 <style scoped>
+  .loading {
+    display: flex;
+    height: 75vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .text-loading {
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: 500;
+  }
   .box {
     display: flex;
     flex-direction: column;
@@ -79,7 +124,6 @@ export default {
     box-shadow: 2px 2px #000;
     cursor: pointer;
     margin: 15px;
-    margin-left: auto;
   }
   .return-btn {
     background-color: #283040;

@@ -1,1 +1,1 @@
-export const url_api = 'gamedev-ufc.herokuapp.com'
+export const url_api = 'https://gamedev-ufc.herokuapp.com'

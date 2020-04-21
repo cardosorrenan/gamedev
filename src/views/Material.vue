@@ -10,7 +10,7 @@
       <div class="box-content mt-5">
         <p class="table-title">Materiais</p>
         <div v-for="item in materiais" :key="item.descricao">
-          <a class="list-btn" :href="item.arquivo">
+          <a class="list-btn" @click="redirect(item.arquivo)">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
@@ -18,7 +18,7 @@
         <hr>
         <p class="table-title">Slides de Aula</p>
         <div v-for="item in slides" :key="item.descricao">
-          <a class="list-btn" :href="item.arquivo">
+          <a class="list-btn" @click="redirect(item.arquivo)">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
@@ -26,7 +26,7 @@
         <hr>
         <p class="table-title">Projetos Desenvolvidos em Aula</p>
         <div v-for="item in projetos" :key="item.descricao">
-          <a class="list-btn" :href="item.arquivo">
+          <a class="list-btn" @click="redirect(item.arquivo)">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
@@ -34,7 +34,7 @@
         <hr>
         <p class="table-title">Projetos Vencedores</p>
         <div v-for="item in projetos_alunos" :key="item.descricao">
-          <a class="list-btn" :href="item.arquivo">
+          <a class="list-btn" @click="redirect(item.arquivo)">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
@@ -45,6 +45,7 @@
 </template>
 <script>
 
+import { url_api } from '../store/api'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -52,6 +53,12 @@ export default {
   data () {
     return {
       url_api
+    }
+  },
+  methods: {
+    redirect(url) {
+      var upload_file = this.url_api + url
+      window.open(upload_file, "_target");
     }
   },
   computed: {

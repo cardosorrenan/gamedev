@@ -79,7 +79,7 @@ export const store = new Vuex.Store({
   actions: {      
     async addTurma({ commit }, turma) { 
       try {
-        await axios.get(`https://${url_api}/turmas?periodo_eq=${turma}`)
+        await axios.get(`${url_api}/turmas?periodo_eq=${turma}`)
         .then(response => {
           commit('setTurma', response.data)
         });

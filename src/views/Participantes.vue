@@ -13,7 +13,7 @@
         <b-table class="table" striped hover :fields="alunosFields" :items="alunos">
           <template v-slot:cell(certificado)="data">
             <div v-if='data.item.certificado' >
-              <a :href="data.item.certificado" target="_blank">
+              <a @click="redirect(data.item.certificado)">
                 <i class="icon fas fa-download" />
               </a>
             </div>
@@ -25,6 +25,7 @@
 </template>
 <script>
 
+import { url_api } from '../store/api'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -41,6 +42,12 @@ export default {
         'faltas',
         { key: 'certificado', label: 'Download' }
       ],
+    }
+  },
+  methods: {
+    redirect(url) {
+      var upload_file = this.url_api + url
+      window.open(upload_file, "_target");
     }
   },
   computed: {
@@ -139,6 +146,7 @@ export default {
     font-size: 14pt;
   }
   .icon {
-    color: #283040
+    color: #283040;
+    cursor: pointer;
   }
 </style>

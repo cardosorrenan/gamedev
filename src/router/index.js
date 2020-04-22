@@ -1,6 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import Home from '../views/Home.vue'
+import Turma from '../views/Turma.vue'
+import Participantes from '../views/Participantes.vue'
+import Material from '../views/Material.vue'
+import Cronograma from '../views/Cronograma.vue'
+import NotFound from '../views/NotFound.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -10,7 +17,7 @@ const routes = [
     meta: {
       title: 'Home'
     },
-    component: () => import('../views/Home.vue')
+    component: Home
   },
   {
     path: '/turma',
@@ -18,7 +25,7 @@ const routes = [
     meta: {
       title: 'Turma'
     },
-    component: () => import('../views/Turma.vue')
+    component: Turma
   },
   {
     path: '/participantes',
@@ -26,7 +33,7 @@ const routes = [
     meta: {
       title: 'Participantes'
     },
-    component: () => import('../views/Participantes.vue')
+    component: Participantes
   },
   {
     path: '/material',
@@ -34,7 +41,7 @@ const routes = [
     meta: {
       title: 'Material'
     },
-    component: () => import('../views/Material.vue')
+    component: Material
   },
   {
     path: '/cronograma',
@@ -42,14 +49,15 @@ const routes = [
     meta: {
       title: 'Cronograma'
     },
-    component: () => import('../views/Cronograma.vue')
+    component: Cronograma
   },
-  { path: "*", 
+  { 
+    path: "*", 
     name: '404 Not Found',
     meta: {
       title: '404 Not Found'
     },
-    component: () => import('../views/NotFound.vue')
+    component: NotFound
   }
 ]
 

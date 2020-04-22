@@ -31,14 +31,14 @@
             {{ item.descricao }}
           </a>
         </div>
-        <hr>
+        <!-- <hr>
         <p class="table-title">Projetos Vencedores</p>
         <div v-for="item in projetos_alunos" :key="item.descricao">
           <a class="list-btn" @click="redirect(item.arquivo)">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

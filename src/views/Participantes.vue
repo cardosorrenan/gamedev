@@ -13,7 +13,7 @@
         <b-table class="table" striped hover :fields="alunosFields" :items="alunos">
           <template v-slot:cell(certificado)="data">
             <div v-if='data.item.certificado' >
-              <a @click="redirect(data.item.certificado)">
+              <a @click="redirect(data.item.nome, '.pdf')">
                 <i class="icon fas fa-download" />
               </a>
             </div>
@@ -25,14 +25,14 @@
 </template>
 <script>
 
-import { url_api } from '../store/api'
+import { url_storage } from '../store/api'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'Participantes',
   data () {
     return {
-      url_api,
+      url_storage,
       colaboradoresFields: [
         'Nome',
         'Email',
@@ -45,10 +45,14 @@ export default {
     }
   },
   methods: {
-    redirect(url) {
-      var upload_file = this.url_api + url
-      window.open(upload_file, "_target");
-    }
+    replaceSpaces(str) {
+      return str.split('').map(char => char.replace(' ', '+')).join('')
+    },
+    redirect(name, type) {
+      const newName = this.replaceSpaces(name)
+      var open_file = this.url_storage + 'certificados/' + newName + type
+      window.open(open_file, "_target");
+    },
   },
   computed: {
     ...mapGetters([

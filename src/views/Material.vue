@@ -10,7 +10,7 @@
       <div class="box-content mt-5">
         <p class="table-title">Materiais</p>
         <div v-for="item in materiais" :key="item.descricao">
-          <a class="list-btn" @click="redirect(item.arquivo)">
+          <a class="list-btn" @click="redirect(item.descricao, '.pdf')">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
@@ -18,48 +18,54 @@
         <hr>
         <p class="table-title">Slides de Aula</p>
         <div v-for="item in slides" :key="item.descricao">
-          <a class="list-btn" @click="redirect(item.arquivo)">
+          <a class="list-btn" @click="redirect(item.descricao, '.pdf')">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
         </div>
         <hr>
         <p class="table-title">Projetos Desenvolvidos em Aula</p>
+        <p class="table-sub-title">Arquivos .aia - Projetos AppInventor</p>
         <div v-for="item in projetos" :key="item.descricao">
-          <a class="list-btn" @click="redirect(item.arquivo)">
+          <a class="list-btn" @click="redirect(item.descricao, '.aia')">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
         </div>
-        <!-- <hr>
+        <hr>
         <p class="table-title">Projetos Vencedores</p>
+        <p class="table-sub-title">Arquivos .apk - Executáveis Android</p>
         <div v-for="item in projetos_alunos" :key="item.descricao">
-          <a class="list-btn" @click="redirect(item.arquivo)">
+          <a class="list-btn" @click="redirect(item.descricao, '.apk')">
             <i class="list-icon fas fa-download" />
             {{ item.descricao }}
           </a>
-        </div> -->
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 
-import { url_api } from '../store/api'
+import { url_storage } from '../store/api'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'Material',
   data () {
     return {
-      url_api
+      url_storage
     }
   },
   methods: {
-    redirect(url) {
-      var upload_file = this.url_api + url
-      window.open(upload_file, "_target");
-    }
+    replaceSpaces(str) {
+      return str.split('').map(char => char.replace(' ', '+')).join('')
+    },
+    redirect(description, type) {
+      const newDescription = this.replaceSpaces(description)
+      var open_file = this.url_storage + newDescription + type
+      window.open(open_file, "_target");
+    },
   },
   computed: {
     ...mapGetters([
@@ -174,6 +180,13 @@ export default {
   .table-title {
     color: #FFF;
     font-weight: 700;
-    font-size: 14pt;
+    text-align: center;
+    font-size: 12pt;
+  }
+  .table-sub-title {
+    color: #FFF;
+    font-weight: 700;
+    text-align: center;
+    font-size: 8pt;
   }
 </style>
